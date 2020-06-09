@@ -17,26 +17,43 @@ namespace Logic
         {
             
             itemService.Create(GenerateValue.RandomString(8));
-            
+            Console.WriteLine("Rekord dodany");
         }
 
-        public bool CheckExistingOfId(int? id)
+        public void DeleteItem(char id)
         {
-            if (id!=null) return true;
 
-            return false;
+            if (!char.IsDigit(id)) Console.WriteLine("Błędne ID");
+            else
+            {
+                int intId = (int)(id - '0');
+                if (itemService.CheckExistingOfId(intId))
+                {
+                    var deleted = itemService.GetById(intId);
+                    itemService.Remove(deleted);
+                    Console.WriteLine($"Item o ID {intId} usunięty");
+                }
+                else Console.WriteLine("Rekord o podanym ID nie istnieje");
+            }
+
         }
 
-        public void DeleteLastItem()
+        public void UpdateItem(char id)
         {
-           // itemService.Remove();
-        }
+            if (!char.IsDigit(id)) Console.WriteLine("Błędne ID");
+            else
+            {
+                int intId = (int)(id - '0');
+                if (itemService.CheckExistingOfId(intId))
+                {
+                    var updated = itemService.GetById(intId);
+                    updated.Value = GenerateValue.RandomString(8);
+                    itemService.Update(updated);
+                    Console.WriteLine($"Item o ID {intId} zmieniony");
+                }
+                else Console.WriteLine("Rekord o podanym ID nie istnieje");
+            }
 
-        public void UpdateLastItem()
-        {
-            GenerateValue.RandomString(8);
-
-            throw new NotImplementedException();
         }
 
     }

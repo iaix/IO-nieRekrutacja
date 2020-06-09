@@ -34,10 +34,14 @@ namespace IOnieRekrutacja
                     logic.AddNewItem();
                     break;
                 case '2':
-                    logic.UpdateLastItem();
+                    Console.WriteLine("Podaj ID itemu do edycji");
+                    char updateId = Console.ReadKey().KeyChar;
+                    logic.UpdateItem(updateId);
                     break;
                 case '3':
-                    logic.DeleteLastItem();
+                    Console.WriteLine("Podaj ID itemu do usunięcia");
+                    char deleteId = Console.ReadKey().KeyChar;
+                    logic.DeleteItem(deleteId);
                     break;
                 default:
                     DisplayMainScreen();

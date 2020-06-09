@@ -35,9 +35,9 @@ namespace Services
         public void Remove(Item item)
         {
 
-            itemRepository.Remove(GetById(GetLastId()));
+            itemRepository.Remove(GetById(item.Id));
         }
-
+        
         public void Update(Item item)
         {
             itemRepository.Update(item);
@@ -52,5 +52,11 @@ namespace Services
         {
             return itemRepository.GetById(id);
 }
+
+        public bool CheckExistingOfId(int? id)
+        {
+            return itemRepository.CheckExistingOfId(id);
+
+        }
     }
 }

@@ -9,8 +9,8 @@ namespace Logic
     public interface IItemLogic
     {
 
-        void UpdateLastItem();
+        void UpdateItem(char id);
         void AddNewItem();
-        void DeleteLastItem();
+        void DeleteItem(char id);
     }
 }
