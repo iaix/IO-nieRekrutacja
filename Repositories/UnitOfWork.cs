@@ -44,7 +44,23 @@ namespace Repositories
 
         public void Save()
         {
-            _dataClassesDataContext.SubmitChanges();
+            System.Data.Common.DbTransaction transaction = null;
+            _dataClassesDataContext.Connection.Open();
+            transaction = _dataClassesDataContext.Connection.BeginTransaction();
+            _dataClassesDataContext.Transaction = transaction;
+            
+            try
+            {
+                _dataClassesDataContext.SubmitChanges();
+
+                
+            transaction.Commit();
+            }
+            catch(Exception)
+            {
+                if (transaction != null)
+                    transaction.Rollback();
+            }
         }
     }
 }

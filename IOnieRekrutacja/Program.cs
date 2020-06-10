@@ -14,7 +14,11 @@ namespace IOnieRekrutacja
         static void Main(string[] args)
         {
             DisplayMainScreen();
-            Console.ReadKey();
+            while (true)
+            {
+                DisplayMainScreen();
+                Console.ReadKey();
+            }
         }
 
         private static void GetKeyFromUser(char input)
@@ -35,12 +39,12 @@ namespace IOnieRekrutacja
                     break;
                 case '2':
                     Console.WriteLine("Podaj ID itemu do edycji");
-                    char updateId = Console.ReadKey().KeyChar;
+                    var updateId = Console.ReadLine();
                     logic.UpdateItem(updateId);
                     break;
                 case '3':
                     Console.WriteLine("Podaj ID itemu do usunięcia");
-                    char deleteId = Console.ReadKey().KeyChar;
+                    var deleteId = Console.ReadLine();
                     logic.DeleteItem(deleteId);
                     break;
                 default:

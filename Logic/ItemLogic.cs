@@ -20,13 +20,14 @@ namespace Logic
             Console.WriteLine("Rekord dodany");
         }
 
-        public void DeleteItem(char id)
+        public void DeleteItem(string id)
         {
+            int i = 0;
+            bool result = int.TryParse(id, out i);
 
-            if (!char.IsDigit(id)) Console.WriteLine("Błędne ID");
-            else
+            if (result)
             {
-                int intId = (int)(id - '0');
+                int intId = int.Parse(id);
                 if (itemService.CheckExistingOfId(intId))
                 {
                     var deleted = itemService.GetById(intId);
@@ -35,15 +36,17 @@ namespace Logic
                 }
                 else Console.WriteLine("Rekord o podanym ID nie istnieje");
             }
-
+            else Console.WriteLine("Błędne ID");
         }
 
-        public void UpdateItem(char id)
+        public void UpdateItem(string id)
         {
-            if (!char.IsDigit(id)) Console.WriteLine("Błędne ID");
-            else
+            int i = 0;
+            bool result = int.TryParse(id, out i);
+
+            if (result)
             {
-                int intId = (int)(id - '0');
+                int intId = int.Parse(id);
                 if (itemService.CheckExistingOfId(intId))
                 {
                     var updated = itemService.GetById(intId);
@@ -53,6 +56,7 @@ namespace Logic
                 }
                 else Console.WriteLine("Rekord o podanym ID nie istnieje");
             }
+            else  Console.WriteLine("Błędne ID");
 
         }
 
