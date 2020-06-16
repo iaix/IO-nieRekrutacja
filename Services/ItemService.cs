@@ -34,7 +34,6 @@ namespace Services
 
         public void Remove(Item item)
         {
-
             itemRepository.Remove(GetById(item.Id));
         }
         
